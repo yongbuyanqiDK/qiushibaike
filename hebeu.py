@@ -32,12 +32,14 @@ class HEBEU:
 
     def get_grades(self):
         page = self.get_page()
-        myItems = re.findall('<tr>.*?<td.*?<td.*?<td.*?<td.*?<td.*?<td.*?<td.*?<p.*?>(.*?)</p>.*?</tr>',page,re.S)
+        myItems = re.findall('\d{2,3}',page,re.S)
         for item in myItems:
             print item.encode('gbk')
 
 hebeu = HEBEU()
 hebeu.get_grades()
+
+
 
 
 
