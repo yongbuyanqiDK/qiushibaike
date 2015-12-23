@@ -32,9 +32,10 @@ class HEBEU:
 
     def get_grades(self):
         page = self.get_page()
-        myItems = re.findall('\d{2,3}',page,re.S)
+        myItems = re.findall('\d{2}\.\d',page,re.S)
         for item in myItems:
-            print item.encode('gbk')
+            if 60 < float(item) <= 99:
+                print item.encode('gbk')
 
 hebeu = HEBEU()
 hebeu.get_grades()
