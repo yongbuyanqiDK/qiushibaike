@@ -32,10 +32,13 @@ class HEBEU:
 
     def get_grades(self):
         page = self.get_page()
-        myItems = re.findall('\d{2}\.\d',page,re.S)
-        for item in myItems:
-            if 60 < float(item) <= 99:
-                print item.encode('gbk')
+        myItems = re.findall('<p align="center">(.*?)&nbsp;</p>', page, re.I)
+        for item in [_ for _ in myItems if _]:
+            try:
+                if 60 < float(item) <= 99:
+                    print item
+            except(UnicodeEncodeError,):
+                print(item)
 
 hebeu = HEBEU()
 hebeu.get_grades()
