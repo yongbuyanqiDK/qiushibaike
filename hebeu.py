@@ -32,13 +32,16 @@ class HEBEU:
 
     def get_grades(self):
         page = self.get_page()
-        myItems = re.findall('<p align="center">(.*?)&nbsp;</p>', page, re.I)
-        for item in [_ for _ in myItems if _]:
-            try:
-                if 60 < float(item) <= 99:
-                    print item
-            except(UnicodeEncodeError,):
-                print(item)
+        my_items_name = re.findall('<td align="center">(.*?)</td>', page, re.S)
+        my_items_score = re.findall('<p align="center">(.*?)&nbsp;</p>',page,re.I)
+        a = range(2,300,7)
+        name = []
+        for _ in a:
+            print my_items_name[_]
+            name.append(my_items_name[_])
+
+        for i, _ in enumerate(my_items_name):
+            print _, name[i]
 
 hebeu = HEBEU()
 hebeu.get_grades()
